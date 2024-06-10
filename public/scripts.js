@@ -59,17 +59,27 @@ async function loadCalendar() {
         loginForm.style.display = 'none';
         calendarContainer.style.display = 'block';
 
-        // Calculate current roster period
-        const today = new Date();
-        let startDate = new Date(today);
-        startDate.setDate(today.getDate() - today.getDay() + 1); // Start of current week (Monday)
-        const dayOfRoster = startDate.getDate();
-        if (dayOfRoster % 14 >= 7) {
-            startDate.setDate(startDate.getDate() + 7); // Move to start of next roster period
+        const today = new Date(2024,04,03);
+        const currentDay = new Date(today);
+        const lastRosterStart = new Date('2024-05-27'); // Last known roster start date
+        const daysSinceLastRosterStart = Math.floor((currentDay - lastRosterStart) / (1000 * 60 * 60 * 24));
+
+        let startDate, endDate;
+        if (daysSinceLastRosterStart % 14 < 7) {
+            startDate = new Date(lastRosterStart);
+            startDate.setDate(lastRosterStart.getDate() + Math.floor(daysSinceLastRosterStart / 14) * 14);
+            endDate = new Date(startDate);
+            endDate.setDate(startDate.getDate() + 13);
+        } else {
+            startDate = new Date(lastRosterStart);
+            startDate.setDate(lastRosterStart.getDate() + (Math.floor(daysSinceLastRosterStart / 14) + 1) * 14);
+            endDate = new Date(startDate);
+            endDate.setDate(startDate.getDate() + 13);
         }
-        
-        const endDate = new Date(startDate);
-        endDate.setDate(startDate.getDate() + 13); // End of 14-day period
+
+        console.log('startDate:', startDate);
+        console.log('endDate:', endDate);
+        console.log('today:', today);
 
         calendarElement.innerHTML = ''; // Clear previous calendar
 
@@ -102,6 +112,10 @@ async function loadCalendar() {
         }
     }
 }
+
+
+
+
 
 function showShiftRequestForm(dayElement) {
     const originalShift = prompt("Enter your original shift:");
