@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#registration, #login {
+    margin-bottom: 20px;
+}
+
+#calendar-container {
+    display: none;
+}
+
+#logout-button {
+    margin-bottom: 20px;
+    display: block;
+}
+
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.day {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 100px;
+    position: relative;
+}
+
+.shift-request {
+    background-color: yellow;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.shift-request .shift-info {
+    font-size: 12px;
+}
+
+.delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 2px 5px;
+    font-size: 10px;
+}
