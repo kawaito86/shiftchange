@@ -59,7 +59,7 @@ async function loadCalendar() {
         loginForm.style.display = 'none';
         calendarContainer.style.display = 'block';
 
-        const today = new Date(2024,04,03);
+        const today = new Date();
         const currentDay = new Date(today);
         const lastRosterStart = new Date('2024-05-27'); // Last known roster start date
         const daysSinceLastRosterStart = Math.floor((currentDay - lastRosterStart) / (1000 * 60 * 60 * 24));
