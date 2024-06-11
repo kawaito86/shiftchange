@@ -62,7 +62,7 @@ function login() {
 function logout() {
     localStorage.removeItem('current_user');
     console.log('User logged out');
-    window.location.href = 'https://stunning-space-funicular-r4jr5574x4hwqvv-3000.app.github.dev/';
+    window.location.href = 'https://shiftchange-67be019e946b.herokuapp.com/';
     document.getElementById('logout-button').style.display = 'none';
 }
 
@@ -108,7 +108,7 @@ async function loadCalendar() {
 
         // Load existing shift requests from the server
         try {
-            const response = await fetch('https://stunning-space-funicular-r4jr5574x4hwqvv-3000.app.github.dev/shift-requests'); // Replace with your public URL
+            const response = await fetch('https://shiftchange-67be019e946b.herokuapp.com/shift-requests'); // Replace with your public URL
             const shiftRequests = await response.json();
             shiftRequests.forEach(request => {
                 const requestDate = new Date(request.date);
@@ -141,7 +141,7 @@ async function requestShift(date, originalShift, requestedShift) {
     const shiftRequest = { username: user.username, whatsapp: user.whatsapp, date, originalShift, requestedShift };
 
     try {
-        const response = await fetch('https://stunning-space-funicular-r4jr5574x4hwqvv-3000.app.github.dev/shift-request', {
+        const response = await fetch('https://shiftchange-67be019e946b.herokuapp.com/shift-request', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(shiftRequest)
@@ -214,7 +214,7 @@ async function deleteShiftRequest(date, username, originalShift, requestedShift)
 
         if (response) {
             try {
-                const deleteResponse = await fetch('https://stunning-space-funicular-r4jr5574x4hwqvv-3000.app.github.dev/shift-request', {
+                const deleteResponse = await fetch('https://shiftchange-67be019e946b.herokuapp.com/shift-request', {
                     method: 'DELETE',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, date, originalShift, requestedShift })
