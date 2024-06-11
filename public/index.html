@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shift Management</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Ensure instructions are visible */
+        #instructions {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            text-align: left;
+        }
+        #instructions h2, #instructions h3 {
+            margin-top: 0;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -33,14 +46,7 @@
 
         <div id="calendar-container">
             <div id="calendar">
-                <div class="day">
-                    <div class="day-header">Sunday</div>
-                    <div class="day-date">Date here</div>
-                    <div class="shift-requests">
-                        <!-- Shift requests go here -->
-                    </div>
-                </div>
-                <!-- Repeat for other days of the week -->
+                <!-- Calendar days will be dynamically inserted here -->
             </div>
         </div>
 
