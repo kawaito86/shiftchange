@@ -2,7 +2,7 @@
   "dependencies": {
     "express": "^4.19.2"
   },
-  "name": "shift",
+  "name": "shiftchange",
   "version": "1.0.0",
   "main": "scripts.js",
   "devDependencies": {},
