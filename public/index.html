@@ -10,13 +10,13 @@
     <div id="app">
         <header>
             <h1>Shift Management System</h1>
-            <button id="logout-button" onclick="logout()">Logout</button>
+            <button id="logout-button" onclick="logout()" style="display: none;">Logout</button>
         </header>
         
         <div id="forms">
             <div id="registration">
                 <h2>Register</h2>
-                <input type="text" id="reg-username" placeholder="Username" >
+                <input type="text" id="reg-username" placeholder="Username">
                 <input type="password" id="reg-password" placeholder="Password">
                 <input type="password" id="reg-confirm-password" placeholder="Confirm Password">
                 <input type="text" id="reg-whatsapp" placeholder="WhatsApp Number">
@@ -33,8 +33,31 @@
 
         <div id="calendar-container">
             <div id="calendar">
-                <!-- Calendar days will be dynamically generated -->
+                <div class="day">
+                    <div class="day-header">Sunday</div>
+                    <div class="day-date">Date here</div>
+                    <div class="shift-requests">
+                        <!-- Shift requests go here -->
+                    </div>
+                </div>
+                <!-- Repeat for other days of the week -->
             </div>
+        </div>
+
+        <!-- Usage Instructions -->
+        <div id="instructions">
+            <h2>Welcome to the Shift Management System!</h2>
+            <h3>How to Use the Website After Login:</h3>
+            <ul>
+                <li><strong>Dashboard Overview:</strong> After logging in, you will see a two-week calendar with each day displayed in a box.</li>
+                <li><strong>Adding a Shift Request:</strong> Click on a day to request a shift change by entering your original and requested shifts.</li>
+                <li><strong>Viewing Shift Requests:</strong> Each day's box will display all shift requests made for that date.</li>
+                <li><strong>Managing Your Shift Requests:</strong> Your requests will have a delete button, allowing you to remove them if needed.</li>
+                <li><strong>Contacting Other Users:</strong> Click on a shift request to offer a shift and contact the user via WhatsApp.</li>
+                <li><strong>Logging Out:</strong> Click the "Logout" button at the top-right corner to end your session.</li>
+            </ul>
+            <h3>Enjoy Seamless Shift Management!</h3>
+            <p>If you encounter any issues or have questions, feel free to reach out for assistance.</p>
         </div>
     </div>
 
