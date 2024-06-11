@@ -4,6 +4,7 @@ const registrationForm = document.getElementById('registration');
 const loginForm = document.getElementById('login');
 const logoutButton = document.getElementById('logout-button');
 
+// Function to handle user registration
 function register() {
     const username = document.getElementById('reg-username').value;
     const password = document.getElementById('reg-password').value;
@@ -19,15 +20,21 @@ function register() {
         const user = { username, password, whatsapp };
         localStorage.setItem('user_' + username, JSON.stringify(user));
         alert("Registration successful. Please login.");
+
+        // Clear the input fields
+        document.getElementById('reg-username').value = '';
+        document.getElementById('reg-password').value = '';
+        document.getElementById('reg-confirm-password').value = '';
+        document.getElementById('reg-whatsapp').value = '';
     } else {
         alert("Please fill in all fields.");
     }
 }
 
+// Function to handle user login
 function login() {
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
-
     const storedUser = localStorage.getItem('user_' + username);
 
     if (storedUser) {
@@ -42,14 +49,21 @@ function login() {
     } else {
         alert("User not found. Please register.");
     }
+    
+    // Show the logout button after successful login
+    document.getElementById('logout-button').style.display = 'block';
+    
+    // Clear input fields
+    document.getElementById('login-username').value = '';
+    document.getElementById('login-password').value = '';
 }
+
 
 function logout() {
     localStorage.removeItem('current_user');
     console.log('User logged out');
-    loginForm.style.display = 'block';
-    registrationForm.style.display = 'block';
-    calendarContainer.style.display = 'none';
+    window.location.href = 'https://stunning-space-funicular-r4jr5574x4hwqvv-3000.app.github.dev/';
+    document.getElementById('logout-button').style.display = 'none';
 }
 
 async function loadCalendar() {
@@ -94,7 +108,7 @@ async function loadCalendar() {
 
         // Load existing shift requests from the server
         try {
-            const response = await fetch('http://localhost:3000/shift-requests');
+            const response = await fetch('https://stunning-space-funicular-r4jr5574x4hwqvv-3000.app.github.dev/shift-requests'); // Replace with your public URL
             const shiftRequests = await response.json();
             shiftRequests.forEach(request => {
                 const requestDate = new Date(request.date);
@@ -113,10 +127,6 @@ async function loadCalendar() {
     }
 }
 
-
-
-
-
 function showShiftRequestForm(dayElement) {
     const originalShift = prompt("Enter your original shift:");
     const requestedShift = prompt("Enter your requested shift:");
@@ -131,7 +141,7 @@ async function requestShift(date, originalShift, requestedShift) {
     const shiftRequest = { username: user.username, whatsapp: user.whatsapp, date, originalShift, requestedShift };
 
     try {
-        const response = await fetch('http://localhost:3000/shift-request', {
+        const response = await fetch('https://stunning-space-funicular-r4jr5574x4hwqvv-3000.app.github.dev/shift-request', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(shiftRequest)
@@ -185,8 +195,6 @@ function displayShiftRequest(dayElement, shiftRequest) {
     dayElement.appendChild(shiftInfo);
 }
 
-
-
 function contactUser(shiftRequest) {
     const currentUser = JSON.parse(localStorage.getItem('current_user'));
     if (currentUser.username !== shiftRequest.username) {
@@ -198,6 +206,7 @@ function contactUser(shiftRequest) {
         }
     }
 }
+
 async function deleteShiftRequest(date, username, originalShift, requestedShift) {
     const currentUser = JSON.parse(localStorage.getItem('current_user'));
     if (currentUser.username === username) {
@@ -205,7 +214,7 @@ async function deleteShiftRequest(date, username, originalShift, requestedShift)
 
         if (response) {
             try {
-                const deleteResponse = await fetch('http://localhost:3000/shift-request', {
+                const deleteResponse = await fetch('https://stunning-space-funicular-r4jr5574x4hwqvv-3000.app.github.dev/shift-request', {
                     method: 'DELETE',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, date, originalShift, requestedShift })
